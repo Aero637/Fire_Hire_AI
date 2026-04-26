@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FairHire AI | Demo Mode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--white);
+            width: 100%;
+            max-width: 700px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 { color: var(--primary); font-weight: 600; margin-bottom: 5px; font-size: 2.5rem; }
+        p.subtitle { color: #636e72; margin-bottom: 30px; font-size: 0.9rem; }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 16px;
+            resize: none;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 15px rgba(108, 92, 231, 0.1);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: transform 0.2s;
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+        }
+
+        button:hover { transform: translateY(-2px); }
+
+        .results-card {
+            display: none;
+            margin-top: 40px;
+            padding: 30px;
+            background: #f9f9fb;
+            border-radius: 20px;
+            text-align: left;
+            border-left: 10px solid var(--accent);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .score-display { font-size: 1.5rem; color: var(--primary); font-weight: 600; }
+        .insights-header { color: #2d3436; font-weight: 600; margin-top: 20px; display: block; }
+        .insights-content { color: #636e72; line-height: 1.7; margin-top: 10px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>FairHire AI</h1>
+    <p class="subtitle">Empowering Unbiased Decisions in Aerospace & Tech Recruitment</p>
+
+    <textarea id="jobContent" placeholder="Paste the job description here..."></textarea>
+    
+    <br>
+    <button onclick="simulateAnalysis()" id="actionBtn">Scan for Hidden Bias</button>
+
+    <div class="results-card" id="resultsPanel">
+        <div class="score-display">Bias Score: <span id="displayScore">0</span>%</div>
+        <hr style="border: 0; border-top: 1px solid #dfe6e9; margin: 20px 0;">
+        <span class="insights-header">Gemini AI Analysis:</span>
+        <div class="insights-content" id="displayInsights"></div>
+    </div>
+</div>
+
+<script>
+    function simulateAnalysis() {
+        const text = document.getElementById('jobContent').value;
+        const btn = document.getElementById('actionBtn');
+        const panel = document.getElementById('resultsPanel');
+
+        if (!text.trim()) {
+            alert("Please enter text first!");
+            return;
+        }
+
+        btn.innerText = "Analyzing...";
+        btn.disabled = true;
+
+        // Simulate a 2-second delay to make it look like it's thinking
+        setTimeout(() => {
+            btn.innerText = "Scan for Hidden Bias";
+            btn.disabled = false;
+            panel.style.display = "block";
+
+            // Mock Data for the Demo
+            document.getElementById('displayScore').innerText = "12";
+            document.getElementById('displayInsights').innerText = 
+                "• Gender Bias Detected: The use of terms like 'Rockstar' and 'Dominant' can unintentionally discourage female applicants.\n" +
+                "• Age Bias: Mentioning 'recent graduates' may exclude experienced aerospace engineers.\n" +
+                "• Recommendation: Replace with 'High-performing professional' and 'Open to all experience levels'.";
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
