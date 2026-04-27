@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "69ee151e2ebbf63d18db3b30"
+  },
+  "project_name": "FairHire AI Audit",
+  "bias_found": true,
+  "bias_score": 15,
+  "detected_at": {
+    "$date": "2026-04-26T14:30:00.000Z"
+  },
+  "feedback_summary": "Detected masculine-coded language in job description."
+}]
